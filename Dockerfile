@@ -1,4 +1,3 @@
-FROM openjdk:8-jdk-alpine
-ARG JAR_FILE=target/*.jar
-COPY ${JAR_FILE} app.jar
+FROM openjdk:21-slim
+COPY target/*.jar app.jar
 ENTRYPOINT ["java","-jar","/app.jar"]
