@@ -8,10 +8,10 @@ WORKDIR /app
 COPY . .
 
 # Ensure the Maven wrapper is executable
-RUN chmod +x ./mvnw
+RUN chmod +x ./mvn
 
 # Run Maven to build the project (use `mvn clean install` for a full build)
-RUN ./mvnw clean package -DskipTests
+RUN ./mvn clean package -DskipTests
 
 # Use a smaller base image to run the app
 FROM openjdk:17-oracle
