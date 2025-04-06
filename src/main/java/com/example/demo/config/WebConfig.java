@@ -11,7 +11,7 @@ public class WebConfig implements WebMvcConfigurer {
     public void addCorsMappings(CorsRegistry registry) {
         // Allow all origins, methods, and headers for all endpoints
         registry.addMapping("/**")
-                .allowedOrigins("*")  // "*" means any origin
+                .allowedOrigins("https://f1check.netlify.app/")  // "*" means any origin
                 .allowedMethods("GET", "POST", "PUT", "DELETE", "OPTIONS")  // Allowed HTTP methods
                 .allowedHeaders("*")  // Allow all headers
                 .allowCredentials(true);
