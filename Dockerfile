@@ -10,8 +10,6 @@ RUN apk update && apk add --no-cache \
     libxcomposite \
     libxrandr \
     libxi \
-    libgdk-pixbuf \
-    libgtk-3.0 \
     nss \
     alsa-lib \
     chromium \
