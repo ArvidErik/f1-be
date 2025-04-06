@@ -11,7 +11,7 @@ COPY . .
 RUN ./mvnw clean package -DskipTests
 
 # Use a smaller base image to run the app
-FROM openjdk:17-jre-slim
+FROM openjdk:17-oracle
 
 # Set the working directory inside the container
 WORKDIR /app
