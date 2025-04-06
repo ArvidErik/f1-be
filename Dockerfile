@@ -1,7 +1,14 @@
 FROM openjdk:21-oracle AS build
 
-# Install Maven
-RUN apt-get update && apt-get install -y maven
+# Install curl, gnupg, and Maven dependencies
+RUN apt-get update && apt-get install -y \
+    curl \
+    gnupg \
+    ca-certificates \
+    unzip \
+    && curl -fsSL https://dlcdn.apache.org/maven/maven-3/3.8.4/binaries/apache-maven-3.8.4-bin.tar.gz -o /tmp/maven.tar.gz \
+    && tar -xvf /tmp/maven.tar.gz -C /opt \
+    && ln -s /opt/apache-maven-3.8.4/bin/mvn /usr/bin/mvn
 
 # Set the working directory inside the container
 WORKDIR /app
