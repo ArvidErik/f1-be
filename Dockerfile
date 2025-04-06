@@ -1,5 +1,7 @@
-# Use a base image with Java 17 or Java 21 (depending on what you're using)
-FROM openjdk:17-oracle AS build
+FROM openjdk:17-jdk-slim AS build
+
+# Install Maven
+RUN apt-get update && apt-get install -y maven
 
 # Set the working directory inside the container
 WORKDIR /app
@@ -7,14 +9,11 @@ WORKDIR /app
 # Copy the entire project into the container
 COPY . .
 
-# Ensure the Maven wrapper is executable
-RUN chmod +x ./mvnw
-
-# Run Maven to build the project (use `mvn clean install` for a full build)
-RUN ./mvnw clean package -DskipTests
+# Run Maven to build the project
+RUN mvn clean package -DskipTests
 
 # Use a smaller base image to run the app
-FROM openjdk:17-oracle
+FROM openjdk:17-jre-slim
 
 # Set the working directory inside the container
 WORKDIR /app
