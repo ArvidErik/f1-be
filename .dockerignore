@@ -1,0 +1,13 @@
+# Ignore Maven build directory
+/target
+
+# Ignore local IDE config files
+.idea
+.vscode
+
+# Ignore OS-specific files
+.DS_Store
+Thumbs.db
+
+# Ignore sensitive files
+application.properties
