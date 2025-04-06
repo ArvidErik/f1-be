@@ -1,14 +1,5 @@
-FROM openjdk:21-oracle AS build
-
-# Install curl, gnupg, and Maven dependencies
-RUN apt-get update && apt-get install -y \
-    curl \
-    gnupg \
-    ca-certificates \
-    unzip \
-    && curl -fsSL https://dlcdn.apache.org/maven/maven-3/3.8.4/binaries/apache-maven-3.8.4-bin.tar.gz -o /tmp/maven.tar.gz \
-    && tar -xvf /tmp/maven.tar.gz -C /opt \
-    && ln -s /opt/apache-maven-3.8.4/bin/mvn /usr/bin/mvn
+# Use the Maven base image with OpenJDK 21
+FROM maven:3.8.4-openjdk-21-slim AS build
 
 # Set the working directory inside the container
 WORKDIR /app
@@ -16,11 +7,14 @@ WORKDIR /app
 # Copy the entire project into the container
 COPY . .
 
-# Run Maven to build the project
-RUN mvn clean package -DskipTests
+# Ensure the Maven wrapper is executable
+RUN chmod +x ./mvnw
+
+# Run Maven to build the project (use `mvn clean install` for a full build)
+RUN ./mvnw clean package -DskipTests
 
 # Use a smaller base image to run the app
-FROM openjdk:21-oracle
+FROM openjdk:21-jre-slim
 
 # Set the working directory inside the container
 WORKDIR /app
