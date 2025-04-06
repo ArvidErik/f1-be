@@ -1,4 +1,4 @@
-FROM openjdk:17-jdk-slim AS build
+FROM openjdk:21-jdk-slim AS build
 
 # Install Maven
 RUN apt-get update && apt-get install -y maven
@@ -13,7 +13,7 @@ COPY . .
 RUN mvn clean package -DskipTests
 
 # Use a smaller base image to run the app
-FROM openjdk:17-jre-slim
+FROM openjdk:21-jre-slim
 
 # Set the working directory inside the container
 WORKDIR /app
