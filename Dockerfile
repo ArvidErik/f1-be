@@ -3,21 +3,19 @@
 FROM eclipse-temurin:21-jdk-alpine
 
 # Install necessary dependencies for Chrome and ChromeDriver
-RUN apt-get update && apt-get install -y \
-    wget \
+RUN apk update && apk add --no-cache \
+    bash \
     curl \
-    unzip \
-    ca-certificates \
-    libx11-dev \
-    libgdk-pixbuf2.0-0 \
-    libgtk-3-0 \
-    libasound2 \
-    libnspr4 \
-    libnss3 \
-    libxss1 \
-    libgbm1 \
-    chromium-driver \
-    chromium
+    libx11 \
+    libxcomposite \
+    libxrandr \
+    libxi \
+    libgdk-pixbuf \
+    libgtk-3.0 \
+    nss \
+    alsa-lib \
+    chromium \
+    chromium-chromedriver
 
 # Create and change to the app directory.
 WORKDIR /app
