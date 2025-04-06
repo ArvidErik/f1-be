@@ -8,8 +8,11 @@ WORKDIR /app
 # Copy files to the container image
 COPY . ./
 
+# Give execute permission to mvnw
+RUN chmod +x ./mvnw
+
 # Build the app.
-RUN chmod +x ./mvnw -DoutputFile=target/mvn-dependency-list.log -B -DskipTests clean dependency:list install
+RUN ./mvnw -DoutputFile=target/mvn-dependency-list.log -B -DskipTests clean dependency:list install
 
 # Run the app by dynamically finding the JAR file in the target directory
 CMD ["sh", "-c", "java -jar target/*.jar"]
