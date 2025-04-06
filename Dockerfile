@@ -1,5 +1,5 @@
 # Use a base image with Java 17 or Java 21 (depending on what you're using)
-FROM openjdk:17-jdk-slim AS build
+FROM openjdk:17-oracle AS build
 
 # Set the working directory inside the container
 WORKDIR /app
