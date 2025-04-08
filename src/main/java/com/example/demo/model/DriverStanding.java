@@ -14,4 +14,19 @@ public class DriverStanding {
     private String nationality;
     private String team;
     private Integer points;
+
+    public void setPosition(int i) {
+    }
+
+    public void setName(String text) {
+    }
+
+    public void setNationality(String text) {
+    }
+
+    public void setTeam(String text) {
+    }
+
+    public void setPoints(int i) {
+    }
 }

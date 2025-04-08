@@ -1,7 +1,6 @@
 package com.example.demo.controller;
 
 import com.example.demo.model.DriverResult;
-import com.example.demo.model.DriverStanding;
 import com.example.demo.service.DriverResultService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
