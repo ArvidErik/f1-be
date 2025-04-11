@@ -5,6 +5,7 @@ import com.example.demo.repository.DriverStandingRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Comparator;
 import java.util.List;
 import java.util.Optional;
 
@@ -16,8 +17,10 @@ public class DriverStandingService {
     public List<DriverStanding> getAllItems() {
 
         return driverStandingRepository.findAll().stream()
-                .sorted((d1, d2) -> Integer.compare(d2.getPoints(), d1.getPoints()))
+                .sorted(Comparator.comparingInt(DriverStanding::getPosition)
+                        .thenComparing(Comparator.comparingInt(DriverStanding::getPoints).reversed()))
                 .toList();
+
     }
 
     public Optional<DriverStanding> getItemById(String id) {
