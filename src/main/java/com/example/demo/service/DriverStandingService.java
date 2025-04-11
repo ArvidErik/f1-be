@@ -14,7 +14,10 @@ public class DriverStandingService {
     private DriverStandingRepository driverStandingRepository;
 
     public List<DriverStanding> getAllItems() {
-        return driverStandingRepository.findAll();
+
+        return driverStandingRepository.findAll().stream()
+                .sorted((d1, d2) -> Integer.compare(d2.getPoints(), d1.getPoints()))
+                .toList();
     }
 
     public Optional<DriverStanding> getItemById(String id) {
